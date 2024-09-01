@@ -14,16 +14,16 @@ export interface InputProps
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, startIcon, ...props }, ref) => {
     return (
-      <div className="flex items-center space-x-2 h-10 rounded-sm border border-input bg-background px-3 py-2">
+      <div className="flex h-auto items-center space-x-2 rounded-sm border border-input bg-transparent px-3 py-2">
         {startIcon && (
-          <div className="flex items-center justify-center size-5 text-muted">
+          <div className="flex size-5 items-center justify-center text-muted">
             {startIcon}
           </div>
         )}
         <input
           type={type}
           className={cn(
-            "w-full text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 focus:outline-none",
+            "w-full text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus:outline-none disabled:cursor-not-allowed disabled:opacity-50",
             className,
           )}
           ref={ref}
