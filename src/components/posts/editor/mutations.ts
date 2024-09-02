@@ -7,18 +7,27 @@ import {
 } from "@tanstack/react-query";
 import { submitPost } from "./actions";
 import { PostsPage } from "@/lib/types";
+import { useSession } from "@/app/(main)/SessionProvider";
 
 export function useSubmitPostMutation() {
   const { toast } = useToast();
 
   const queryClient = useQueryClient();
 
+  const { user } = useSession();
+
   const mutation = useMutation({
     mutationFn: submitPost,
     onSuccess: async (newPost) => {
-      const queryFilter: QueryFilters = {
-        queryKey: ["post-feed", "for-you"],
-      };
+      const queryFilter = {
+        queryKey: ["post-feed"],
+        predicate(query) {
+          return (
+            query.queryKey.includes("for-you") ||
+            query.queryKey.includes(user.id) // update profile feed cache also
+          );
+        },
+      } satisfies QueryFilters;
       await queryClient.cancelQueries(queryFilter); // Cancel current running query
 
       // Update posts cache with our new post
@@ -44,7 +53,7 @@ export function useSubmitPostMutation() {
       queryClient.invalidateQueries({
         queryKey: queryFilter.queryKey,
         predicate(query) {
-          return !query.state.data; // If data is null, invalidate feed, its an edge case which can happen if user tries to create post before feeds are loaded
+          return queryFilter.predicate(query) && !query.state.data; // If data is null, invalidate feed, its an edge case which can happen if user tries to create post before feeds are loaded
         },
       });
 
