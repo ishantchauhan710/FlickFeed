@@ -41,6 +41,13 @@ export function useSubmitPostMutation() {
         },
       );
 
+      queryClient.invalidateQueries({
+        queryKey: queryFilter.queryKey,
+        predicate(query) {
+          return !query.state.data; // If data is null, invalidate feed, its an edge case which can happen if user tries to create post before feeds are loaded
+        },
+      });
+
       toast({
         description: "Post created",
       });
