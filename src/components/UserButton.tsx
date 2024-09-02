@@ -19,6 +19,7 @@ import { Check, LogOutIcon, Monitor, Moon, Sun, UserIcon } from "lucide-react";
 import { logout } from "@/app/(auth)/actions";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface UserButtonProps {
   className?: string;
@@ -29,10 +30,18 @@ export default function UserButton({ className }: UserButtonProps) {
 
   const { theme, setTheme } = useTheme();
 
+  const queryClient = useQueryClient();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button title="Profile" className={cn("flex-none rounded-full border-none outline-none", className)}>
+        <button
+          title="Profile"
+          className={cn(
+            "flex-none rounded-full border-none outline-none",
+            className,
+          )}
+        >
           <UserAvatar avatarUrl={user.avatarUrl} size={32} />
         </button>
       </DropdownMenuTrigger>
@@ -70,6 +79,7 @@ export default function UserButton({ className }: UserButtonProps) {
         <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={() => {
+            queryClient.clear();
             logout();
           }}
         >
