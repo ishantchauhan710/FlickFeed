@@ -14,7 +14,7 @@ export interface InputProps
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, startIcon, ...props }, ref) => {
     return (
-      <div className="flex h-auto items-center space-x-2 rounded-sm border border-input bg-transparent px-3 py-2">
+      <div className="flex w-full h-auto items-center space-x-2 rounded-sm border border-input bg-transparent px-3 py-2">
         {startIcon && (
           <div className="flex size-5 items-center justify-center text-muted">
             {startIcon}
