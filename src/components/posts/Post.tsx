@@ -6,6 +6,7 @@ import UserAvatar from "../UserAvatar";
 import { formatRelativeDate } from "@/lib/utils";
 import { useSession } from "@/app/(main)/SessionProvider";
 import PostMoreButton from "./PostsMoreButton";
+import Linkify from "../Linkify";
 
 interface PostProps {
   post: PostData;
@@ -38,7 +39,9 @@ export default function Post({ post }: PostProps) {
         </div>
         {post.user.id === user.id && <PostMoreButton post={post} />}
       </div>
-      <div className="whitespace-pre-line break-words">{post.content}</div>
+      <Linkify>
+        <div className="whitespace-pre-line break-words">{post.content}</div>
+      </Linkify>
     </article>
   );
 }
