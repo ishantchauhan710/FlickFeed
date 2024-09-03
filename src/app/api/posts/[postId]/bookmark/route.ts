@@ -1,8 +1,8 @@
 import { validateRequest } from "@/auth";
 import prisma from "@/lib/prisma";
-import { FollowerInfo, LikeInfo } from "@/lib/types";
+import { BookmarkInfo } from "@/lib/types";
 
-// Get post
+// Get bookmark
 export async function GET(
   req: Request,
   { params: { postId } }: { params: { postId: string } },
@@ -18,37 +18,17 @@ export async function GET(
       );
     }
 
-    const post = await prisma.post.findUnique({
-      where: { id: postId },
-      select: {
-        likes: {
-          where: {
-            userId: loggedInUser.id,
-          },
-          select: {
-            userId: true,
-          },
-        },
-        _count: {
-          select: {
-            likes: true,
-          },
+    const bookmark = await prisma.bookmark.findUnique({
+      where: {
+        userId_postId: {
+          userId: loggedInUser.id,
+          postId,
         },
       },
     });
 
-    if (!post) {
-      return Response.json(
-        { error: "Post not found" },
-        {
-          status: 404,
-        },
-      );
-    }
-
-    const data: LikeInfo = {
-      likes: post._count.likes,
-      isLikedByUser: !!post.likes.lastIndexOf,
+    const data: BookmarkInfo = {
+      isBookmarkedByUser: !!bookmark,
     };
 
     return Response.json(data);
@@ -63,7 +43,7 @@ export async function GET(
   }
 }
 
-// Like post
+// Add bookmark
 export async function POST(
   req: Request,
   { params: { postId } }: { params: { postId: string } },
@@ -79,8 +59,8 @@ export async function POST(
       );
     }
 
-    // If like model exists, don't create it
-    await prisma.like.upsert({
+    // If bookmark model exists, don't create it
+    await prisma.bookmark.upsert({
       where: {
         userId_postId: {
           userId: loggedInUser.id,
@@ -106,7 +86,7 @@ export async function POST(
   }
 }
 
-// Unlike post
+// Remove bookmark
 export async function DELETE(
   req: Request,
   { params: { postId } }: { params: { postId: string } },
@@ -123,7 +103,7 @@ export async function DELETE(
     }
 
     // delete can throw error if follower doesnt exist which can happen due to race conditions but deleteMany wont throw error
-    await prisma.like.deleteMany({
+    await prisma.bookmark.deleteMany({
       where: {
         userId: loggedInUser.id,
         postId,
