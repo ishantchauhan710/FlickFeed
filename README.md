@@ -1,4 +1,4 @@
-![](/m_shots/pc_3.png)
+![](screenshots/pc_3.png)
 # **FlickFeed** 
 
 **FlickFeed** is a social media platform where users can upload posts and images, like and comment on other people's posts, receive notifications and do many other things
