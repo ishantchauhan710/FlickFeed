@@ -1,6 +1,6 @@
 import UserAvatar from "@/components/UserAvatar";
 import { NotificationData } from "@/lib/types";
-import { cn } from "@/lib/utils";
+import { cn, formatRelativeDate } from "@/lib/utils";
 import { NotificationType } from "@prisma/client";
 import { Heart, MessageCircle, User2 } from "lucide-react";
 import Link from "next/link";
@@ -21,7 +21,7 @@ export default function Notification({ notification }: NotificationProps) {
     },
     COMMENT: {
       message: `${notification.issuer.displayName} commented on your post`,
-      icon: <MessageCircle className="size-7 text-primary fill-primary" />,
+      icon: <MessageCircle className="size-7 fill-primary text-primary" />,
       href: `/posts/${notification.postId}`,
     },
     LIKE: {
@@ -48,6 +48,7 @@ export default function Notification({ notification }: NotificationProps) {
             <span className="font-bold">{notification.issuer.displayName}</span>{" "}
             <span>{message}</span>
           </div>
+          <div>{formatRelativeDate(notification.createdAt)}</div>
           {notification.post && (
             <div className="line-clamp-3 whitespace-pre-line text-muted-foreground">
               {notification.post.content}

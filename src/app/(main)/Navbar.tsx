@@ -19,9 +19,7 @@ export default function Navbar() {
           <SearchField />
         </div>
 
-        <div>
-          <UserButton />
-        </div>
+        <UserButton />
       </div>
     </header>
   );

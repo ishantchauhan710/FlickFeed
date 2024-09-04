@@ -21,8 +21,8 @@ export default function Chat() {
   }
 
   return (
-    <main className="relative w-full overflow-hidden rounded-sm bg-card shadow-sm">
-      <div className="flex w-full">
+    <main className="relative w-full overflow-hidden rounded-sm bg-card shadow-sm my-5">
+      <div className="flex w-full gap-3">
         <StreamChat
           client={chatClient}
           theme={
