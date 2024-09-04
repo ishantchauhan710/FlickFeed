@@ -1,4 +1,4 @@
-import { BookmarkInfo, BookmarkInfo } from "@/lib/types";
+import { BookmarkInfo } from "@/lib/types";
 import { useToast } from "../ui/use-toast";
 import {
   QueryKey,

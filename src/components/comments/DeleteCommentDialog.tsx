@@ -1,4 +1,4 @@
-import { PostData } from "@/lib/types";
+import { CommentData, PostData } from "@/lib/types";
 import {
   Dialog,
   DialogContent,
