@@ -14,7 +14,7 @@ export default function Chat() {
   // resolvedTheme is dark | light and not system
   const { resolvedTheme } = useTheme();
 
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   if (!chatClient) {
     return <Loader2 className="mx-auto my-3 animate-spin" />;

@@ -124,7 +124,7 @@ async function UserProfile({ user, loggedInUserId }: UserProfileProps) {
         <>
           <hr />
           <Linkify>
-            <div className="overflow-hidden whitespace-pre-line break-words">
+            <div className="overflow-hidden whitespace-pre-line break-words mt-2">
               {user.bio}
             </div>
           </Linkify>

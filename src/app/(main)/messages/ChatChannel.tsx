@@ -20,7 +20,7 @@ interface ChatChannelProps {
 export default function ChatChannel({ open, openSidebar }: ChatChannelProps) {
   const { user } = useSession();
   return (
-    <div className={cn("w-full md:block", !open && "hidden")}>
+    <div className={cn("w-full md:block h-screen", !open && "hidden")}>
       <Channel>
         <Window>
           <CustomChannelHeader openSidebar={openSidebar} />

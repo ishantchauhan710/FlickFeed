@@ -20,7 +20,7 @@ export default function Page() {
           </div>
           {/* INFO */}
           <div className="mt-6 text-2xl font-bold">Create an account</div>
-          <div className="mb-3 mt-1 text-base font-medium text-muted">
+          <div className="mb-3 mt-1 text-base font-medium">
             Your Feed Awaits — Sign Up Now!
           </div>
 

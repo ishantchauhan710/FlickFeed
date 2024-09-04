@@ -31,7 +31,7 @@ export async function GET(req: NextRequest) {
       storedCodeVerifier,
     );
     const googleUser = await kyInstance
-      .get(`https://www.googleapis.com/oauth2/v1/userinfo`, {
+      .get(`https://www.googleapis.com/oauth2/userinfo`, {
         headers: {
           Authorization: `Bearer ${tokens.accessToken}`,
         },

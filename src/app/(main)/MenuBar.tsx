@@ -6,6 +6,7 @@ import { validateRequest } from "@/auth";
 import prisma from "@/lib/prisma";
 import MessagesButton from "./messages/MessagesButton";
 import streamServerClient from "@/lib/stream";
+import { cn } from "@/lib/utils";
 
 interface MenuBarProps {
   className?: string;
@@ -33,7 +34,7 @@ export default async function MenuBar({ className }: MenuBarProps) {
         title="Home"
         asChild
       >
-        <Link href="/">
+        <Link href="/" className={cn()}>
           <Home />
           <span className="hidden lg:inline">Home</span>
         </Link>
