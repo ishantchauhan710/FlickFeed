@@ -7,32 +7,20 @@ import { MdEmail, MdNotifications } from "react-icons/md";
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-10 bg-primary shadow-sm">
+    <header className="sticky top-0 z-10 bg-primary-foreground text-primary shadow-sm">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-5 px-5 py-3">
         <div>
-          <Link href="/" className="text-2xl font-bold text-primary-foreground">
+          <Link href="/" className="text-2xl font-bold">
             FlickFeed
           </Link>
         </div>
 
-        <div className="flex items-center gap-16">
-          <div className="hidden sm:block">
-            <SearchField />
-          </div>
+        <div className="hidden sm:block">
+          <SearchField />
+        </div>
 
-          <div className="hidden items-center gap-6 md:flex">
-            <BadgeIcon
-              icon={<MdEmail size={28} />}
-              badgeText="2"
-              title="Messages"
-            />
-            <BadgeIcon
-              icon={<MdNotifications size={28} />}
-              badgeText="8"
-              title="Notifications"
-            />
-          </div>
-          <UserButton className="sm:ms-auto" />
+        <div>
+          <UserButton />
         </div>
       </div>
     </header>

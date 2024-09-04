@@ -38,7 +38,7 @@ export default function UserButton({ className }: UserButtonProps) {
         <button
           title="Profile"
           className={cn(
-            "flex-none rounded-full border-none outline-none",
+            "flex-none rounded-full border-none shadow-sm outline-none",
             className,
           )}
         >
@@ -46,7 +46,11 @@ export default function UserButton({ className }: UserButtonProps) {
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuLabel>Logged in as @{user.username}</DropdownMenuLabel>
+        <DropdownMenuLabel>
+          {user.displayName.length > 15
+            ? user.displayName.slice(0, 15) + "..."
+            : user.displayName}
+        </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <Link href={`/users/${user.username}`}>
           <DropdownMenuItem>

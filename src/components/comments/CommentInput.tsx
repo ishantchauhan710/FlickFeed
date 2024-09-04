@@ -31,7 +31,7 @@ export default function CommentInput({ post }: CommentInputProps) {
   }
 
   return (
-    <form className="flex w-full items-center gap-2" onSubmit={onSubmit}>
+    <form className="flex w-full items-center gap-2 my-3" onSubmit={onSubmit}>
       <Input
         placeholder="Write a comment..."
         value={input}

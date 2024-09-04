@@ -24,7 +24,7 @@ export default function Post({ post }: PostProps) {
   const { user } = useSession();
   const [showComments, setShowComments] = useState(false);
   return (
-    <article className="space-y-3 rounded-2xl bg-card p-5 shadow-sm">
+    <article className="space-y-3 rounded-sm bg-card p-5 shadow-sm">
       <div className="flex justify-between gap-3">
         <div className="flex flex-wrap gap-3">
           <UserTooltip user={post.user}>
@@ -116,7 +116,7 @@ function MediaPreview({ media }: MediaPreviewProps) {
         alt="Attachment"
         width={500}
         height={500}
-        className="mx-auto size-full max-h-[30rem] rounded-2xl"
+        className="mx-auto size-full max-h-[30rem] rounded-sm"
       />
     );
   }
@@ -127,7 +127,7 @@ function MediaPreview({ media }: MediaPreviewProps) {
         <video
           src={media.url}
           controls
-          className="mx-auto size-full max-h-[30rem] rounded-2xl"
+          className="mx-auto size-full max-h-[30rem] rounded-sm"
         />
       </div>
     );

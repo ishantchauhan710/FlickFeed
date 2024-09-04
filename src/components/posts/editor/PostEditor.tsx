@@ -78,8 +78,8 @@ export default function PostEditor() {
   }
 
   return (
-    <div className="flex flex-col gap-5 rounded-2xl bg-card p-5 shadow-sm">
-      <div className="flex gap-5">
+    <div className="flex flex-col gap-3 rounded-sm bg-card p-5 shadow-sm">
+      <div className="flex gap-3">
         <UserAvatar
           avatarUrl={user.avatarUrl}
           className="hidden sm:inline"
@@ -90,7 +90,7 @@ export default function PostEditor() {
           <EditorContent
             editor={editor}
             className={cn(
-              "max-h-[20rem] w-full overflow-y-auto rounded-2xl bg-background px-5 py-3",
+              "max-h-[20rem] w-full overflow-y-auto rounded-sm bg-background px-5 py-3",
               isDragActive && "outline-dashed",
             )}
             onPaste={onPaste}
@@ -104,7 +104,7 @@ export default function PostEditor() {
           removeAttachment={removeAttachment}
         />
       )}
-      <div className="flex justify-end">
+      <div className="flex justify-end gap-3">
         {isUploading && (
           <>
             <span className="text-sm">{uploadProgress ?? 0}%</span>
@@ -215,10 +215,10 @@ function AttachmentPreview({
           alt="Attachment preview"
           width={500}
           height={500}
-          className="size-fit max-h-[30rem] rounded-2xl"
+          className="size-fit max-h-[30rem] rounded-sm"
         />
       ) : (
-        <video controls className="size-fit max-h-[30rem] rounded-2xl">
+        <video controls className="size-fit max-h-[30rem] rounded-sm">
           {/* Add source like this to avoid re rendering */}
           <source src={src} type={file.type} />
         </video>

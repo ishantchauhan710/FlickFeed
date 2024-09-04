@@ -43,7 +43,7 @@ async function SuggestedUsers() {
     take: 5,
   });
   return (
-    <div className="space-y-5 rounded-2xl bg-card p-5 shadow-sm">
+    <div className="space-y-5 rounded-sm bg-card p-5 shadow-sm">
       <div className="text-xl font-bold">Suggested Users</div>
       {usersToFollow.map((user) => (
         <div key={user.id} className="flex items-center justify-between gap-3">
@@ -106,7 +106,7 @@ const getTrendingTopics = unstable_cache(
 async function TrendingTopics() {
   const trendingTopics = await getTrendingTopics();
   return (
-    <div className="space-y-5 rounded-2xl bg-card p-5 shadow-sm">
+    <div className="space-y-5 rounded-sm bg-card p-5 shadow-sm">
       <div className="text-xl font-bold">Trending</div>
       {trendingTopics.map(({ hashtag, count }) => {
         const title = hashtag.split("#")[1];

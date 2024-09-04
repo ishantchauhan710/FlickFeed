@@ -71,7 +71,7 @@ async function UserInfoSidebar({ user }: UserInfoSidebarProps) {
   if (!loggedInUser) return null;
 
   return (
-    <div className="space-y-5 rounded-2xl bg-card p-5 shadow-sm">
+    <div className="space-y-5 rounded-sm bg-card p-5 shadow-sm">
       <div className="text-xl font-bold">About this user</div>
       <UserTooltip user={user}>
         <Link

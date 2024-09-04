@@ -9,7 +9,7 @@ import FollowingFeed from "./FollowingFeed";
 
 export default function Home() {
   return (
-    <main className="m-2 flex w-full min-w-0 gap-5">
+    <main className="m-2 flex w-full min-w-0 gap-10 py-3">
       <div className="w-full min-w-0 space-y-5">
         <PostEditor />
         <Tabs defaultValue="for-you">
