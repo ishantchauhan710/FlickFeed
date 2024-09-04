@@ -13,7 +13,7 @@ You can try FlickFeed by visiting: [https://flickfeed-ishant.vercel.app/login](h
 
 ### Video Demo
 
-[Here](https://www.youtube.com/watch?v=qTP6rp6s57w&t=50s) is a short video on how to use FlickFeed
+[Here](https://youtu.be/pVlwR7TITHc?si=9ILdw36WhxVS_GGw) is a short video on how to use FlickFeed
 
 ## FlickFeed Features :fire:
 
