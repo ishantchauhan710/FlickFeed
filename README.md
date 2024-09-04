@@ -5,7 +5,7 @@
 
 ## About :dart:
 
-FlickFeed is a web app built using the NextJs! Here, a user can create account, search and follow users, interact with their posts, and do a lot more!
+FlickFeed is a web app built using the NextJs! Here, a user can create account, search and follow users, interact with their posts, and do a lot more! It showcases different advanced caching strategies, optimistic updates, advanced pagination, some of the best practices for a industry level project and much more.
 
 ## Demo
 
