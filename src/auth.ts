@@ -3,19 +3,22 @@ import prisma from "./lib/prisma";
 import { Lucia, Session, User } from "lucia";
 import { cache } from "react";
 import { cookies } from "next/headers";
+import { Google } from "arctic";
 
 // Adapter for lucia (here prisma adapter)
 const adapter = new PrismaAdapter(prisma.session, prisma.user);
 
 // Lucia config
 export const lucia = new Lucia(adapter, {
-  sessionCookie: { // Cookie config
+  sessionCookie: {
+    // Cookie config
     expires: false,
     attributes: {
       secure: process.env.NODE_ENV === "production", // Enable secure cookies only in production
     },
   },
-  getUserAttributes(databaseUserAttributes) { // Data we store in session and cookies
+  getUserAttributes(databaseUserAttributes) {
+    // Data we store in session and cookies
     return {
       id: databaseUserAttributes.id,
       username: databaseUserAttributes.username,
@@ -41,6 +44,12 @@ interface DatabaseUserAttributes {
   avatarUrl: string | null;
   googleId: string | null;
 }
+
+export const google = new Google(
+  process.env.GOOGLE_CLIENT_ID!,
+  process.env.GOOGLE_CLIENT_SECRET!,
+  `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/callback/google`,
+);
 
 // Validate session
 export const validateRequest = cache(

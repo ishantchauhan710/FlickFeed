@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import FlickFeedSVG from "@/assets/flickfeed.svg";
 import LoginForm from "./LoginForm";
+import GoogleSignInButton from "./GoogleSignInButton";
 
 export const metadata: Metadata = {
   title: "Login",
@@ -23,7 +24,12 @@ export default function Page() {
           <div className="mb-3 mt-1 text-base font-medium text-muted">
             Your Feed Awaits — Login Now!
           </div>
-
+          <GoogleSignInButton />
+          <div className="flex items-center gap-3">
+            <div className="h-px flex-1 bg-muted" />
+            <span>OR</span>
+            <div className="h-px flex-1 bg-muted" />
+          </div>
           <LoginForm />
 
           <div className="mt-2 text-center">

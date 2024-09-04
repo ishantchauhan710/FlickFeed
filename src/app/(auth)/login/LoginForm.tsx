@@ -81,9 +81,8 @@ export default function LoginForm() {
           )}
         />
 
-        {/* Create Account */}
         <LoadingButton loading={isPending} type="submit" className="w-full">
-          Create account
+          Login
         </LoadingButton>
       </form>
     </Form>
