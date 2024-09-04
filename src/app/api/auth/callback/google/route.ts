@@ -30,8 +30,9 @@ export async function GET(req: NextRequest) {
       code,
       storedCodeVerifier,
     );
+
     const googleUser = await kyInstance
-      .get(`https://www.googleapis.com/oauth2/userinfo`, {
+      .get("https://www.googleapis.com/oauth2/v1/userinfo", {
         headers: {
           Authorization: `Bearer ${tokens.accessToken}`,
         },
@@ -46,18 +47,24 @@ export async function GET(req: NextRequest) {
 
     if (existingUser) {
       const session = await lucia.createSession(existingUser.id, {});
-      const sessionCookie = await lucia.createSessionCookie(session.id);
+      const sessionCookie = lucia.createSessionCookie(session.id);
       cookies().set(
         sessionCookie.name,
         sessionCookie.value,
         sessionCookie.attributes,
       );
+      return new Response(null, {
+        status: 302,
+        headers: {
+          Location: "/",
+        },
+      });
     }
 
     const userId = generateIdFromEntropySize(10);
+
     const username = slugify(googleUser.name) + "-" + userId.slice(0, 4);
 
-    // Interactive transactions with stream server client
     await prisma.$transaction(async (tx) => {
       await tx.user.create({
         data: {
@@ -67,7 +74,6 @@ export async function GET(req: NextRequest) {
           googleId: googleUser.id,
         },
       });
-
       await streamServerClient.upsertUser({
         id: userId,
         username,
@@ -77,7 +83,6 @@ export async function GET(req: NextRequest) {
 
     const session = await lucia.createSession(userId, {});
     const sessionCookie = lucia.createSessionCookie(session.id);
-
     cookies().set(
       sessionCookie.name,
       sessionCookie.value,
@@ -93,8 +98,12 @@ export async function GET(req: NextRequest) {
   } catch (error) {
     console.error(error);
     if (error instanceof OAuth2RequestError) {
-      return new Response(null, { status: 400 });
+      return new Response(null, {
+        status: 400,
+      });
     }
-    return new Response(null, { status: 500 });
+    return new Response(null, {
+      status: 500,
+    });
   }
 }
